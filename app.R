@@ -64,7 +64,7 @@ ui <- shinyUI(fluidPage(
          tags$br(),
          tags$br(),
          
-         HTML("The histogram below shows the frequency of waiting times between eruptions. You can use the slider on the left to select how many bins the histogram should have. More bins groups the data into smaller ranges of waiting times."),
+         HTML("The histogram below shows the frequency of waiting times between eruptions. You can use the slider on the left to select how many bins the histogram should have. Selecting more bins groups the data into smaller ranges of waiting times."),
          tags$br(),
          tags$br(),
          
