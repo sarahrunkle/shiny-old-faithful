@@ -18,6 +18,7 @@ ui <- shinyUI(fluidPage(
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
     sidebarPanel(
+      width=4,
       # radio buttons for color of plots
       radioButtons("rb", 
                    label = ("Select Color for Plots:"),
@@ -44,7 +45,9 @@ ui <- shinyUI(fluidPage(
                   selected = 19),
       
       # create size slider
-      sliderInput("slider", label = "Size Slider:", min = 200, max = 800, value = 350),
+      sliderInput("slider",
+                  label = "Select Size of Eruption:",
+                  min = 200, max = 800, value = 350),
       
       hr(),
       fluidRow(column(3, verbatimTextOutput("value")))
