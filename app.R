@@ -83,7 +83,7 @@ ui <- shinyUI(fluidPage(
       
       plotOutput("distPlot"),
       
-      HTML("The scatterplot below explores the relationship between waiting times between eruptions (x axis) and length of eruption (y axis). You can select the scatterplot icon type on the left. We can see that there appears to be a positive relationship betwen waiting time between eruptions and length of eruption. This means that, generally, the longer the time between eruptions, the longer the eruption lasts when it does occur."),
+      HTML("The scatterplot below explores the relationship between waiting time between eruptions (x axis) and length of eruption (y axis). You can select the scatterplot icon type on the left. We can see that there appears to be a positive relationship between waiting time between eruptions and length of eruption. This means that, generally, the longer the time between eruptions, the longer the eruption lasts when it does occur."),
       tags$br(),
       tags$br(),
       
