@@ -19,7 +19,8 @@ ui <- shinyUI(fluidPage(
    sidebarLayout(
       sidebarPanel(
         # radio buttons for color of plots
-        radioButtons("rb", "Select Color for Plots:",
+        radioButtons("rb", 
+                     label = ("Select Color for Plots:"),
                      choiceNames = list(
                        HTML("<p style='color:darkslategray;'>Dark Green</p>"),
                        HTML("<p style='color:gray50;'>Gray</p>"),
@@ -32,13 +33,13 @@ ui <- shinyUI(fluidPage(
         
         # slider for # of bins
         sliderInput("bins",
-                     "Select # of Bins for Histogram:",
+                     label = ("Select # of Bins for Histogram:"),
                      min = 1,
                      max = 30,
                      value = 10),
         
         # select box for icon type
-        selectInput("select", label = h3("Select Icon Type for Scatterplot"), 
+        selectInput("select", label = ("Select Icon Type for Scatterplot:"), 
                     choices = list("Solid Circle" = 19, "Square" = 15, "Plus" = 3), 
                     selected = 19),
         hr(),
@@ -54,13 +55,25 @@ ui <- shinyUI(fluidPage(
          tags$br(),
          tags$br(),
          
-         img(src='old-faithful-picture.png',
-             width="325"),
+         HTML('<center><img src="old-faithful-picture.png" width="325"></center>'),
+         
          tags$br(),
          tags$br(),
-         HTML("The dataset has two columns: waiting and eruptions. The waiting column includes the length of waiting time between eruptions (in minutes), and the eruption column includes the length of the eruption (in minutes). There are 272 observations included in this dataset."),
+         
+         HTML("The dataset has two columns: <em>waiting</em> and <em>eruptions</em>. The <em>waiting</em> column includes the length of waiting time between eruptions (in minutes), and the <em>eruption</em> column includes the length of the eruption (in minutes). There are 272 observations included in this dataset."),
+         tags$br(),
+         tags$br(),
+         
+         HTML("The histogram below shows the frequency of waiting times between eruptions. You can use the slider on the left to select how many bins the histogram should have. More bins groups the data into smaller ranges of waiting times."),
+         tags$br(),
+         tags$br(),
          
          plotOutput("distPlot"),
+         
+         HTML("The scatterplot below explores the relationship between waiting times between eruptions (x axis) and length of eruption (y axis). You can select the scatterplot icon type on the left. We can see that there appears to be a positive relationship betwen waiting time between eruptions and length of eruption. This means that, generally, the longer the time between eruptions, the longer the eruption lasts when it does occur."),
+         tags$br(),
+         tags$br(),
+         
          plotOutput("distPlot2")
       )
    )
@@ -81,7 +94,7 @@ server <- shinyServer(function(input, output) {
            col = input$rb, 
            border = 'black',
            main='Histogram of Waiting Times Between Eruptions',
-           xlab='Waiting Times(min)',
+           xlab='Waiting Time (min)',
            ylab='Frequency')
    })  
    
@@ -94,7 +107,7 @@ server <- shinyServer(function(input, output) {
           pch = strtoi({ input$select }), 
           frame = FALSE,
           col=input$rb,
-          main = "Scatterplot of Waiting Times Between Eruptions \n and Length of Eruption",
+          main = "Scatterplot of Waiting Time Between Eruptions \n and Length of Eruption",
           xlab='Waiting Time Between Eruptions (min)',
           ylab='Length of Eruption (min)')
    })   
