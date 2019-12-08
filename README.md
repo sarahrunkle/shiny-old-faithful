@@ -1,5 +1,5 @@
 # shiny-old-faithful
-first work with R Shiny apps
+This project is my first work with R Shiny. Shiny is an R package that makes it easy to build interactive web apps straight from R. Read more about Shiny [at this link.](https://shiny.rstudio.com/)
 
 The "Old Faithful Geyser Data" app is a commonly-used tutorial to work through when starting to learn R Shiny. See the original example app [at this link.](https://shiny.rstudio.com/articles/basics.html)
 
