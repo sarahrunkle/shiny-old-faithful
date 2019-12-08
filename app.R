@@ -98,7 +98,6 @@ server <- shinyServer(function(input, output) {
   
   # render image of old faithful
   size_list <- list(tiny=150, small=250, medium=350, large=500, enormous=700)
-  output$value <- renderPrint({size_list[input$mySliderText]})
   
   output$logo <- renderUI({
     img(src = "old-faithful-picture.png", 
