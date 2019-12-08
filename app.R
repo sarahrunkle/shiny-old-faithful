@@ -44,8 +44,7 @@ ui <- shinyUI(fluidPage(
                   selected = 19),
       
       # create size slider
-      sliderInput("slider", label = "Size Slider:", min = 100, max = 300, value = 200),
-      uiOutput('logo'),
+      sliderInput("slider", label = "Size Slider:", min = 200, max = 800, value = 350),
       
       hr(),
       fluidRow(column(3, verbatimTextOutput("value")))
@@ -60,7 +59,8 @@ ui <- shinyUI(fluidPage(
       tags$br(),
       tags$br(),
       
-      HTML('<center><img src="old-faithful-picture.png" width="325"></center>'),
+      #HTML('<center><img src="old-faithful-picture.png" width="325"></center>'),
+      uiOutput('logo'),
       
       tags$br(),
       tags$br(),
