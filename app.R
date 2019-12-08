@@ -48,12 +48,20 @@ ui <- shinyUI(fluidPage(
       
       # Show a plot of the generated distribution
       mainPanel(
+         h4("About the Data"),
+         
+         p("R includes several dozen built-in datasets available for data exploration. The"), 
+         em("faithful"),
+         p("dataset includes data on the Old Faithful geyser, a famous geyser at Yellowstone National Park. You can read more about the geyser"),
+         tags$a(href="https://www.yellowstonepark.com/things-to-do/about-old-faithful", "at this link"),
+         
+         img(src='old-faithful-picture.png', 
+             align = "center"),
+         
          plotOutput("distPlot"),
          plotOutput("distPlot2")
       )
    )
-   
-   
    
 ))
 
@@ -88,9 +96,7 @@ server <- shinyServer(function(input, output) {
           xlab='Waiting Time Between Eruptions (min)',
           ylab='Length of Eruption (min)')
    })   
-   
-
-})
+   })
 
 # Run the application 
 shinyApp(ui = ui, server = server)
