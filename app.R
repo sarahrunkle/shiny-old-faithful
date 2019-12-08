@@ -8,6 +8,7 @@
 #
 
 library(shiny)
+library(shinyWidgets)
 
 # Define UI for application that draws a histogram
 ui <- shinyUI(fluidPage(
@@ -44,11 +45,6 @@ ui <- shinyUI(fluidPage(
                   choices = list("Solid Circle" = 19, "Square" = 15, "Plus" = 3), 
                   selected = 19),
       
-      # create size slider
-      sliderInput("slider",
-                  label = "Select Size of Eruption:",
-                  min = 200, max = 800, value = 350),
-      
       hr(),
       fluidRow(column(3, verbatimTextOutput("value")))
       
@@ -62,13 +58,27 @@ ui <- shinyUI(fluidPage(
       tags$br(),
       tags$br(),
       
+      HTML("The dataset has two columns: <em>waiting</em> and <em>eruptions</em>. The <em>waiting</em> column includes the length of waiting time between eruptions (in minutes), and the <em>eruption</em> column includes the length of the eruption (in minutes). There are 272 observations included in this dataset."),
+      tags$br(),
+      tags$br(),
+      
       #HTML('<center><img src="old-faithful-picture.png" width="325"></center>'),
       uiOutput('logo'),
       
-      tags$br(),
-      tags$br(),
+      # create size slider
+      sliderInput("slider",
+                  label = "Select Size of Eruption:",
+                  min = 200, max = 800, value = 350,
+                  ticks=FALSE),
       
-      HTML("The dataset has two columns: <em>waiting</em> and <em>eruptions</em>. The <em>waiting</em> column includes the length of waiting time between eruptions (in minutes), and the <em>eruption</em> column includes the length of the eruption (in minutes). There are 272 observations included in this dataset."),
+      sliderTextInput(
+        inputId = "mySliderText", 
+        label = "Select Eruption Size:", 
+        grid = TRUE, 
+        force_edges = TRUE,
+        choices = c("tiny","small", "medium", "large", "enormous")
+      ),
+      
       tags$br(),
       tags$br(),
       
@@ -91,7 +101,8 @@ ui <- shinyUI(fluidPage(
 # Define server logic required to draw a histogram
 server <- shinyServer(function(input, output) {
   output$logo <- renderUI({
-    img(src = "old-faithful-picture.png", width = as.integer(input$slider))
+    img(src = "old-faithful-picture.png", 
+        width = as.integer(input$slider))
   })
   
   output$distPlot <- renderPlot({
