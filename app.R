@@ -66,11 +66,6 @@ ui <- shinyUI(fluidPage(
       uiOutput('logo'),
       
       # create size slider
-      sliderInput("slider",
-                  label = "Select Size of Eruption:",
-                  min = 200, max = 800, value = 350,
-                  ticks=FALSE),
-      
       sliderTextInput(
         inputId = "mySliderText", 
         label = "Select Eruption Size:", 
@@ -100,11 +95,17 @@ ui <- shinyUI(fluidPage(
 
 # Define server logic required to draw a histogram
 server <- shinyServer(function(input, output) {
+  
+  # render image of old faithful
+  size_list <- list(tiny=150, small=250, medium=350, large=500, enormous=700)
+  output$value <- renderPrint({size_list[input$mySliderText]})
+  
   output$logo <- renderUI({
     img(src = "old-faithful-picture.png", 
-        width = as.integer(input$slider))
+        width = as.integer(size_list[input$mySliderText]))
   })
   
+  # histogram
   output$distPlot <- renderPlot({
     # generate bins based on input$bins from ui.R
     x    <- faithful[, 'waiting'] 
@@ -120,6 +121,7 @@ server <- shinyServer(function(input, output) {
          ylab='Frequency')
   })  
   
+  # scatterplot
   output$distPlot2 <- renderPlot({
     # generate bins based on input$bins from ui.R
     x    <- faithful[, 'waiting'] 
