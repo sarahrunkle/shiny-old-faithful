@@ -49,14 +49,16 @@ ui <- shinyUI(fluidPage(
       # Show a plot of the generated distribution
       mainPanel(
          h4("About the Data"),
+         HTML("R includes several dozen built-in datasets available for data exploration. The <em>faithful</em> dataset includes data on the Old Faithful geyser, a famous geyser at Yellowstone National Park. You can read more about the geyser"),
+         tags$a(href = "https://www.yellowstonepark.com/things-to-do/about-old-faithful", "at this link."),
+         tags$br(),
+         tags$br(),
          
-         p("R includes several dozen built-in datasets available for data exploration. The"), 
-         em("faithful"),
-         p("dataset includes data on the Old Faithful geyser, a famous geyser at Yellowstone National Park. You can read more about the geyser"),
-         tags$a(href="https://www.yellowstonepark.com/things-to-do/about-old-faithful", "at this link"),
-         
-         img(src='old-faithful-picture.png', 
-             align = "center"),
+         img(src='old-faithful-picture.png',
+             width="325"),
+         tags$br(),
+         tags$br(),
+         HTML("The dataset has two columns: waiting and eruptions. The waiting column includes the length of waiting time between eruptions (in minutes), and the eruption column includes the length of the eruption (in minutes). There are 272 observations included in this dataset."),
          
          plotOutput("distPlot"),
          plotOutput("distPlot2")
